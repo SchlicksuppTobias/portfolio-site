@@ -3,12 +3,50 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Full Stack Web Developer – Tobias Schlicksupp</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <title>Junior Full Stack Web Developer – Tobias Schlicksupp</title>
+    <style>
+        :root{
+            --container-width: 1100px;
+            --accent: #2563eb;
+            --muted: #6b7280;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
+        *{box-sizing:border-box}
+        body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:#111827; background:var(--bg)}
+        .container{max-width:var(--container-width); margin:0 auto; padding:1rem}
+
+        /* Header Styling */
+        header{background:#000; color:#fff; border-bottom:1px solid #222;}
+        header .container{display:flex; justify-content:space-between; align-items:center;}
+        .logo{font-weight:700; font-size:1.25rem;}
+        nav ul{list-style:none; display:flex; gap:1.5rem; padding:0; margin:0}
+        nav a{color:#fff; text-decoration:none; font-weight:500; transition:color .3s}
+        nav a:hover{color:var(--accent)}
+
+        .hero{display:flex; gap:2rem; align-items:center; padding:3rem 0}
+        .hero-image img{max-width:280px; border-radius:8px}
+
+        .separator{height:1px;background:linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);margin:0;border:0;}
+        .skills{padding:2.25rem 0 2.5rem;}
+        .skills h2{font-size:1.25rem;margin:0 0 1rem 0;font-weight:600;}
+        .skills p.lead{color:var(--muted); margin:0 0 1.25rem}
+        .skills-grid{display:grid; grid-template-columns:1fr; gap:1rem}
+        @media(min-width:700px){.skills-grid{grid-template-columns:repeat(2, 1fr); gap:1.25rem}}
+        .skill{background:var(--card);padding:0.75rem 1rem;border-radius:10px;box-shadow:0 1px 2px rgba(15,23,42,0.04);display:flex;flex-direction:column;gap:0.6rem;min-height:72px;}
+        .skill .label{display:flex; justify-content:space-between; align-items:center; font-weight:600;}
+        .skill .label .percent{font-weight:700; color:var(--accent)}
+        .bar{height:12px;background:#eef2ff;border-radius:999px;overflow:hidden;position:relative;}
+        .bar .fill{height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg,var(--accent), #7c3aed); transform-origin:left center; transition:width 1200ms cubic-bezier(.2,.9,.2,1);}
+        .bar .fill::after{content:''; position:absolute; left:0; top:0; bottom:0; width:40%; opacity:0.12; background:linear-gradient(90deg, rgba(255,255,255,0.35), rgba(255,255,255,0.06)); transform:translateX(-20%);}
+
+        footer{background:#000; color:#fff; padding:1.5rem 0; margin-top:2rem}
+        .footer-content{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem}
+        .footer-content p{margin:0; font-size:1rem;}
+        .social-links a{margin-right:0.75rem; color:#fff; text-decoration:none; transition:color .3s}
+        .social-links a:hover{color:var(--accent)}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
@@ -22,19 +60,64 @@
                 <li><a href="/contact/">Kontakt</a></li>
             </ul>
         </nav>
-        <button id="menu-toggle">☰</button>
     </div>
 </header>
 
 <main class="hero">
-    <div class="hero-content">
-        <h1>Full Stack Web Developer</h1>
+    <div class="hero-content container">
+        <h1>Junior Full Stack Web Developer</h1>
         <p>Ich entwickle moderne Webanwendungen mit PHP, JavaScript & DevOps-Fokus.</p>
     </div>
     <div class="hero-image">
         <img src="images/1631716275890.jpg" alt="Porträt von Dir" />
     </div>
 </main>
+
+<section class="separator-wrapper">
+    <hr class="separator" />
+</section>
+
+<section class="skills" aria-labelledby="skills-heading">
+    <div class="container">
+        <h2 id="skills-heading">Kurzübersicht über meine Fähigkeiten</h2>
+        <p class="lead">Prozentwerte geben meine relative Erfahrung / Vertrautheit mit der Technologie an.</p>
+
+        <div class="skills-grid">
+            <div class="skill" data-percent="95">
+                <div class="label"><span>HTML</span><span class="percent">95%</span></div>
+                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+            </div>
+            <div class="skill" data-percent="85">
+                <div class="label"><span>PHP</span><span class="percent">85%</span></div>
+                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+            </div>
+            <div class="skill" data-percent="70">
+                <div class="label"><span>CSS</span><span class="percent">70%</span></div>
+                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+            </div>
+            <div class="skill" data-percent="65">
+                <div class="label"><span>JavaScript</span><span class="percent">65%</span></div>
+                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+            </div>
+            <div class="skill" data-percent="60">
+                <div class="label"><span>Docker</span><span class="percent">60%</span></div>
+                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+            </div>
+            <div class="skill" data-percent="50">
+                <div class="label"><span>Nginx</span><span class="percent">50%</span></div>
+                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+            </div>
+            <div class="skill" data-percent="45">
+                <div class="label"><span>Ms SQL</span><span class="percent">45%</span></div>
+                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+            </div>
+            <div class="skill" data-percent="50">
+                <div class="label"><span>MariaDB</span><span class="percent">50%</span></div>
+                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <footer>
     <div class="container footer-content">
@@ -53,7 +136,34 @@
     </div>
 </footer>
 
-
-<script src="js/menu.js"></script>
+<script>
+    (function(){
+        const skillsSection = document.querySelector('.skills');
+        if(!skillsSection) return;
+        const observer = new IntersectionObserver((entries, obs)=>{
+            entries.forEach(entry=>{
+                if(!entry.isIntersecting) return;
+                document.querySelectorAll('.skill').forEach(skill => {
+                    const percent = parseInt(skill.getAttribute('data-percent')) || 0;
+                    const fill = skill.querySelector('.fill');
+                    const percentLabel = skill.querySelector('.percent');
+                    if(!fill) return;
+                    fill.style.width = percent + '%';
+                    fill.setAttribute('aria-valuenow', String(percent));
+                    let start = 0;
+                    const duration = 900;
+                    const stepTime = Math.max(Math.floor(duration / (percent || 1)), 10);
+                    const counter = setInterval(()=>{
+                        start += 1;
+                        percentLabel.textContent = start + '%';
+                        if(start >= percent) clearInterval(counter);
+                    }, stepTime);
+                });
+                obs.disconnect();
+            });
+        }, {threshold:0.15});
+        observer.observe(skillsSection);
+    })();
+</script>
 </body>
 </html>
