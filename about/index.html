@@ -1,10 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über mich - Tobias Schlicksupp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #000;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .back-btn {
+            background: #2563eb;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background .3s;
+        }
+        .back-btn:hover {
+            background: #1e40af;
+        }
+
+        /* Content */
+        section.about {
+            max-width: 1000px;
+            margin: auto;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about img {
+            flex: 1 1 250px;
+            max-width: 250px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .about-content {
+            flex: 2 1 400px;
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #222;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            background: #e9ecef;
+            padding: 0.8rem 1rem;
+            border-left: 4px solid #0077cc;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            section.about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about img {
+                margin: auto;
+            }
+
+            .about-content {
+                text-align: left;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
+
+<header>
+    <div class="logo">Tobias Schlicksupp</div>
+    <button class="back-btn" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i> Zurück
+    </button>
+</header>
+
+<section class="about">
+    <div class="about-content">
+        <h2>Über mich</h2>
+        <p>Hallo, ich bin <strong>Tobias Schlicksupp</strong>. Mein beruflicher Weg begann mit einer Ausbildung zum Industriemechaniker und führte über den Industriemeister Metall mit Ausbildereignung schließlich zu einer Umschulung zum Anwendungsentwickler – weil alles rund um den PC schon immer meine Leidenschaft war.</p>
+
+        <p>Heute arbeite ich als <strong>Teamlead der Support-Abteilung</strong>, wo ich Support-Fälle bearbeite und gleichzeitig Fullstack- und DevOps-Aufgaben übernehme. Mein Schwerpunkt liegt auf <strong>PHP</strong>, doch ich setze auch auf <strong>HTML, CSS, JavaScript, MariaDB, MySQL und MSSQL</strong>.</p>
+
+        <div class="highlight">
+            <strong>Private Projekte:</strong><br>
+            • Entwicklung von Spiele-Trainern (<strong>C++</strong> Pointer-Bearbeitung, <strong>C#</strong> Windows Forms & Eingaben)<br>
+            • Start eines eigenen <strong>Browsergames</strong><br>
+            • <strong>KI-Experimente</strong> zur Bilderstellung und Automatisierung
+        </div>
+
+        <p>Vor meinem Umzug war ich als <strong>Schöffe am Landgericht Frankfurt</strong> tätig. Abseits der Arbeit bin ich leidenschaftlicher Gamer – besonders Strategiespiele und Aufbauspiele wie <em>Factorio</em> faszinieren mich.</p>
+    </div>
+</section>
+
+<footer>
+    <button class="back-btn" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i> Zurück zur vorherigen Seite
+    </button>
+</footer>
 
 </body>
 </html>

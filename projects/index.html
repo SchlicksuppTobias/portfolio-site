@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekte - Tobias Schlicksupp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #000;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .back-btn {
+            background: #2563eb;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background .3s;
+        }
+        .back-btn:hover {
+            background: #1e40af;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform .3s;
+            aspect-ratio: 1 / 1; /* quadratisch */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            flex: 1;
+            object-fit: cover;
+        }
+        .card .title {
+            padding: 0.75rem 1rem;
+            font-weight: bold;
+            text-align: center;
+            background: #f8f9fa;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 8px;
+            max-width: 700px;
+            width: 90%;
+            padding: 1.5rem;
+            position: relative;
+            animation: fadeIn .3s ease;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #555;
+        }
+        .modal-content img {
+            max-width: 100%;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Tobias Schlicksupp</div>
+    <button class="back-btn" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i> Zurück
+    </button>
+</header>
+
+<h1>Meine Projekte</h1>
+
+<div class="grid">
+    <div class="card" onclick="openModal('modal1')">
+        <img src="../images/img.png" alt="Projekt 1">
+        <div class="title">Spiele-Trainer</div>
+    </div>
+    <div class="card" onclick="openModal('modal2')">
+        <img src="../images/img.png" alt="Projekt 2">
+        <div class="title">Browsergame</div>
+    </div>
+    <div class="card" onclick="openModal('modal3')">
+        <img src="../images/img.png" alt="Projekt 3">
+        <div class="title">KI-Bilderstellung</div>
+    </div>
+</div>
+
+<!-- Modal 1 -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
+        <h2>Spiele-Trainer</h2>
+        <img src="../images/img.png" alt="Projekt 1">
+        <p>Mit C++ bearbeite ich Pointer und nutze C# Windows Forms zur Eingabe. Ziel ist es, flexible Trainer für PC-Spiele zu entwickeln.</p>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
+        <h2>Browsergame</h2>
+        <img src="../images/img.png" alt="Projekt 2">
+        <p>Mein aktuell gestartetes Browsergame basiert auf JavaScript, PHP und einer MariaDB-Datenbank. Fokus liegt auf Strategie & Aufbaumechanik.</p>
+    </div>
+</div>
+
+<!-- Modal 3 -->
+<div id="modal3" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
+        <h2>KI-Bilderstellung</h2>
+        <img src="../images/img.png" alt="Projekt 3">
+        <p>Experimentelle Projekte mit KI zur automatischen Bild-Generierung und kreativen Automatisierungen.</p>
+    </div>
+</div>
+
+<footer>
+    <button class="back-btn" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i> Zurück zur vorherigen Seite
+    </button>
+</footer>
+
+<script>
+    function openModal(id) {
+        document.getElementById(id).classList.add('active');
+    }
+    function closeModal(id) {
+        document.getElementById(id).classList.remove('active');
+    }
+    // ESC-Taste schließt Modal
+    window.addEventListener('keydown', function(e){
+        if(e.key === "Escape"){
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+        }
+    });
+</script>
+
+</body>
+</html>
