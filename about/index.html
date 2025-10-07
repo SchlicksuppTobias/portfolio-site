@@ -23,6 +23,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         header .logo {
             font-weight: bold;
@@ -45,6 +47,19 @@
             background: #1e40af;
         }
 
+        .lang-switch button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 500;
+            padding: 0;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .lang-switch button:hover { color: #2563eb; }
+        .lang-switch .active { text-decoration: underline; color: #2563eb; }
+
         /* Content */
         section.about {
             max-width: 1000px;
@@ -56,15 +71,8 @@
             align-items: center;
         }
 
-        .about img {
-            flex: 1 1 250px;
-            max-width: 250px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
         .about-content {
-            flex: 2 1 400px;
+            flex: 1 1 100%;
         }
 
         .about-content h2 {
@@ -90,11 +98,6 @@
                 flex-direction: column;
                 text-align: center;
             }
-
-            .about img {
-                margin: auto;
-            }
-
             .about-content {
                 text-align: left;
             }
@@ -114,34 +117,92 @@
 
 <header>
     <div class="logo">Tobias Schlicksupp</div>
+    <div class="lang-switch">
+        <button id="lang-de" class="active">DE</button> |
+        <button id="lang-en">EN</button>
+    </div>
     <button class="back-btn" onclick="history.back()">
-        <i class="fas fa-arrow-left"></i> Zurück
+        <i class="fas fa-arrow-left"></i> <span data-i18n="back">Zurück</span>
     </button>
 </header>
 
 <section class="about">
     <div class="about-content">
-        <h2>Über mich</h2>
-        <p>Hallo, ich bin <strong>Tobias Schlicksupp</strong>. Mein beruflicher Weg begann mit einer Ausbildung zum Industriemechaniker und führte über den Industriemeister Metall mit Ausbildereignung schließlich zu einer Umschulung zum Anwendungsentwickler – weil alles rund um den PC schon immer meine Leidenschaft war.</p>
+        <h2 data-i18n="heading">Über mich</h2>
+        <p data-i18n="intro1">
+            Hallo, ich bin <strong>Tobias Schlicksupp</strong>. Mein beruflicher Weg begann mit einer Ausbildung zum Industriemechaniker und führte über den Industriemeister Metall mit Ausbildereignung schließlich zu einer Umschulung zum Anwendungsentwickler – weil alles rund um den PC schon immer meine Leidenschaft war.
+        </p>
 
-        <p>Heute arbeite ich als <strong>Teamlead der Support-Abteilung</strong>, wo ich Support-Fälle bearbeite und gleichzeitig Fullstack- und DevOps-Aufgaben übernehme. Mein Schwerpunkt liegt auf <strong>PHP</strong>, doch ich setze auch auf <strong>HTML, CSS, JavaScript, MariaDB, MySQL und MSSQL</strong>.</p>
+        <p data-i18n="intro2">
+            Heute arbeite ich als <strong>Teamlead der Support-Abteilung</strong>, wo ich Support-Fälle bearbeite und gleichzeitig Fullstack- und DevOps-Aufgaben übernehme. Mein Schwerpunkt liegt auf <strong>PHP</strong>, doch ich setze auch auf <strong>HTML, CSS, JavaScript, MariaDB, MySQL und MSSQL</strong>.
+        </p>
 
-        <div class="highlight">
+        <div class="highlight" data-i18n="projects">
             <strong>Private Projekte:</strong><br>
             • Entwicklung von Spiele-Trainern (<strong>C++</strong> Pointer-Bearbeitung, <strong>C#</strong> Windows Forms & Eingaben)<br>
             • Start eines eigenen <strong>Browsergames</strong><br>
             • <strong>KI-Experimente</strong> zur Bilderstellung und Automatisierung
         </div>
 
-        <p>Vor meinem Umzug war ich als <strong>Schöffe am Landgericht Frankfurt</strong> tätig. Abseits der Arbeit bin ich leidenschaftlicher Gamer – besonders Strategiespiele und Aufbauspiele wie <em>Factorio</em> faszinieren mich.</p>
+        <p data-i18n="intro3">
+            Vor meinem Umzug war ich als <strong>Schöffe am Landgericht Frankfurt</strong> tätig. Abseits der Arbeit bin ich leidenschaftlicher Gamer – besonders Strategiespiele und Aufbauspiele wie <em>Factorio</em> faszinieren mich.
+        </p>
     </div>
 </section>
 
 <footer>
     <button class="back-btn" onclick="history.back()">
-        <i class="fas fa-arrow-left"></i> Zurück zur vorherigen Seite
+        <i class="fas fa-arrow-left"></i> <span data-i18n="backFooter">Zurück zur vorherigen Seite</span>
     </button>
 </footer>
+
+<script>
+    const translations = {
+        de: {
+            back: "Zurück",
+            backFooter: "Zurück zur vorherigen Seite",
+            heading: "Über mich",
+            intro1: "Hallo, ich bin <strong>Tobias Schlicksupp</strong>. Mein beruflicher Weg begann mit einer Ausbildung zum Industriemechaniker und führte über den Industriemeister Metall mit Ausbildereignung schließlich zu einer Umschulung zum Anwendungsentwickler – weil alles rund um den PC schon immer meine Leidenschaft war.",
+            intro2: "Heute arbeite ich als <strong>Teamlead der Support-Abteilung</strong>, wo ich Support-Fälle bearbeite und gleichzeitig Fullstack- und DevOps-Aufgaben übernehme. Mein Schwerpunkt liegt auf <strong>PHP</strong>, doch ich setze auch auf <strong>HTML, CSS, JavaScript, MariaDB, MySQL und MSSQL</strong>.",
+            projects: "<strong>Private Projekte:</strong><br>• Entwicklung von Spiele-Trainern (<strong>C++</strong> Pointer-Bearbeitung, <strong>C#</strong> Windows Forms & Eingaben)<br>• Start eines eigenen <strong>Browsergames</strong><br>• <strong>KI-Experimente</strong> zur Bilderstellung und Automatisierung",
+            intro3: "Vor meinem Umzug war ich als <strong>Schöffe am Landgericht Frankfurt</strong> tätig. Abseits der Arbeit bin ich leidenschaftlicher Gamer – besonders Strategiespiele und Aufbauspiele wie <em>Factorio</em> faszinieren mich."
+        },
+        en: {
+            back: "Back",
+            backFooter: "Back to previous page",
+            heading: "About Me",
+            intro1: "Hello, I'm <strong>Tobias Schlicksupp</strong>. My professional journey began with an apprenticeship as an industrial mechanic, continued with a foreman certification in metalwork and training qualification, and eventually led to retraining as an application developer – because everything related to PCs has always been my passion.",
+            intro2: "Today I work as a <strong>Team Lead in the Support Department</strong>, handling support cases while also taking on full stack and DevOps tasks. My main focus is <strong>PHP</strong>, but I also use <strong>HTML, CSS, JavaScript, MariaDB, MySQL and MSSQL</strong>.",
+            projects: "<strong>Private Projects:</strong><br>• Development of game trainers (<strong>C++</strong> pointer editing, <strong>C#</strong> Windows Forms & input handling)<br>• Launching my own <strong>browser game</strong><br>• <strong>AI experiments</strong> for image generation and automation",
+            intro3: "Before moving, I served as a <strong>lay judge at the District Court of Frankfurt</strong>. Outside of work, I'm a passionate gamer – especially strategy and building games like <em>Factorio</em> fascinate me."
+        }
+    };
+
+    (function() {
+        const userLang = localStorage.getItem("lang") || "de";
+        setLanguage(userLang);
+
+        document.getElementById("lang-de").addEventListener("click", () => switchLanguage("de"));
+        document.getElementById("lang-en").addEventListener("click", () => switchLanguage("en"));
+
+        function switchLanguage(lang) {
+            localStorage.setItem("lang", lang);
+            setLanguage(lang);
+        }
+
+        function setLanguage(lang) {
+            const t = translations[lang];
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (t[key]) el.innerHTML = t[key];
+            });
+
+            document.getElementById("lang-de").classList.toggle("active", lang === "de");
+            document.getElementById("lang-en").classList.toggle("active", lang === "en");
+            document.documentElement.lang = lang;
+        }
+    })();
+</script>
 
 </body>
 </html>

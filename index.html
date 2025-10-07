@@ -45,6 +45,20 @@
         .footer-content p{margin:0; font-size:1rem;}
         .social-links a{margin-right:0.75rem; color:#fff; text-decoration:none; transition:color .3s}
         .social-links a:hover{color:var(--accent)}
+
+        .lang-switch button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 500;
+            padding: 0;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .lang-switch button:hover { color: var(--accent); }
+        .lang-switch .active { text-decoration: underline; color: var(--accent); }
+
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <base href="/portfolio-site/">
@@ -60,6 +74,10 @@
                 <li><a href="projects/index.html">Projekte</a></li>
             </ul>
         </nav>
+        <div class="lang-switch">
+            <button id="lang-de" class="active">DE</button> |
+            <button id="lang-en">EN</button>
+        </div>
     </div>
 </header>
 
@@ -183,6 +201,60 @@
             });
         }, {threshold:0.15});
         observer.observe(skillsSection);
+    })();
+
+    const translations = {
+        de: {
+            title: "Junior Full Stack Web Developer",
+            subtitle: "Ich entwickle moderne Webanwendungen mit PHP, JavaScript & DevOps-Fokus.",
+            skillsHeading: "Kurzübersicht über meine Fähigkeiten",
+            skillsLead: "Prozentwerte geben meine relative Erfahrung / Vertrautheit mit der Technologie an.",
+            follow: "Folge mir:",
+            navAbout: "Über mich",
+            navProjects: "Projekte"
+        },
+        en: {
+            title: "Junior Full Stack Web Developer",
+            subtitle: "I develop modern web applications with PHP, JavaScript & DevOps focus.",
+            skillsHeading: "Overview of my skills",
+            skillsLead: "Percentages indicate my relative experience or familiarity with each technology.",
+            follow: "Follow me:",
+            navAbout: "About Me",
+            navProjects: "Projects"
+        }
+    };
+
+    (function() {
+        const userLang = localStorage.getItem("lang") || "de";
+        setLanguage(userLang);
+
+        document.getElementById("lang-de").addEventListener("click", () => switchLanguage("de"));
+        document.getElementById("lang-en").addEventListener("click", () => switchLanguage("en"));
+
+        function switchLanguage(lang) {
+            localStorage.setItem("lang", lang);
+            setLanguage(lang);
+        }
+
+        function setLanguage(lang) {
+            const t = translations[lang];
+
+            document.querySelector("h1").textContent = t.title;
+            document.querySelector(".hero-content p").textContent = t.subtitle;
+            document.getElementById("skills-heading").textContent = t.skillsHeading;
+            document.querySelector(".skills .lead").textContent = t.skillsLead;
+            document.querySelector("footer p").textContent = t.follow;
+
+            // 🆕 Navigation anpassen:
+            const navLinks = document.querySelectorAll("#main-nav a");
+            if (navLinks.length >= 2) {
+                navLinks[0].textContent = t.navAbout;
+                navLinks[1].textContent = t.navProjects;
+            }
+
+            document.getElementById("lang-de").classList.toggle("active", lang === "de");
+            document.getElementById("lang-en").classList.toggle("active", lang === "en");
+        }
     })();
 </script>
 </body>
