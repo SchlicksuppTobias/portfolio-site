@@ -246,11 +246,16 @@
             document.querySelector("footer p").textContent = t.follow;
 
             // 🆕 Navigation anpassen:
-            const navLinks = document.querySelectorAll("#main-nav a");
-            if (navLinks.length >= 2) {
-                navLinks[0].textContent = t.navAbout;
-                navLinks[1].textContent = t.navProjects;
+            const navLink = document.querySelector("#main-nav a");
+            if (navLink) {
+                navLink.textContent = t.navAbout;
             }
+
+            // const navLinks = document.querySelectorAll("#main-nav a");
+            // if (navLinks.length >= 2) {
+            //     navLinks[0].textContent = t.navAbout;
+            //     //navLinks[1].textContent = t.navProjects;
+            // }
 
             document.getElementById("lang-de").classList.toggle("active", lang === "de");
             document.getElementById("lang-en").classList.toggle("active", lang === "en");
