@@ -1,266 +1,950 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Junior Full Stack Web Developer – Tobias Schlicksupp</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio – Tobias Schlicksupp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root{
-            --container-width: 1100px;
-            --accent: #2563eb;
+        :root {
+            --bg: #f5f7fa;
+            --surface: #ffffff;
+            --text: #1f2937;
             --muted: #6b7280;
-            --bg: #f8fafc;
-            --card: #ffffff;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --border: #e5e7eb;
+            --shadow: 0 10px 30px rgba(0,0,0,.08);
+            --radius: 16px;
+            --max-width: 1200px;
         }
-        *{box-sizing:border-box}
-        body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:#111827; background:var(--bg)}
-        .container{max-width:var(--container-width); margin:0 auto; padding:1rem}
 
-        /* Header Styling */
-        header{background:#000; color:#fff; border-bottom:1px solid #222;}
-        header .container{display:flex; justify-content:space-between; align-items:center;}
-        .logo{font-weight:700; font-size:1.25rem;}
-        nav ul{list-style:none; display:flex; gap:1.5rem; padding:0; margin:0}
-        nav a{color:#fff; text-decoration:none; font-weight:500; transition:color .3s}
-        nav a:hover{color:var(--accent)}
-
-        .hero{display:flex; gap:2rem; align-items:center; padding:3rem 0}
-        .hero-image img{max-width:280px; border-radius:8px}
-
-        .separator{height:1px;background:linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);margin:0;border:0;}
-        .skills{padding:2.25rem 0 2.5rem;}
-        .skills h2{font-size:1.25rem;margin:0 0 1rem 0;font-weight:600;}
-        .skills p.lead{color:var(--muted); margin:0 0 1.25rem}
-        .skills-grid{display:grid; grid-template-columns:1fr; gap:1rem}
-        @media(min-width:700px){.skills-grid{grid-template-columns:repeat(2, 1fr); gap:1.25rem}}
-        .skill{background:var(--card);padding:0.75rem 1rem;border-radius:10px;box-shadow:0 1px 2px rgba(15,23,42,0.04);display:flex;flex-direction:column;gap:0.6rem;min-height:72px;}
-        .skill .label{display:flex; justify-content:space-between; align-items:center; font-weight:600;}
-        .skill .label .percent{font-weight:700; color:var(--accent)}
-        .bar{height:12px;background:#eef2ff;border-radius:999px;overflow:hidden;position:relative;}
-        .bar .fill{height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg,var(--accent), #7c3aed); transform-origin:left center; transition:width 1200ms cubic-bezier(.2,.9,.2,1);}
-        .bar .fill::after{content:''; position:absolute; left:0; top:0; bottom:0; width:40%; opacity:0.12; background:linear-gradient(90deg, rgba(255,255,255,0.35), rgba(255,255,255,0.06)); transform:translateX(-20%);}
-
-        footer{background:#000; color:#fff; padding:1.5rem 0; margin-top:2rem}
-        .footer-content{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem}
-        .footer-content p{margin:0; font-size:1rem;}
-        .social-links a{margin-right:0.75rem; color:#fff; text-decoration:none; transition:color .3s}
-        .social-links a:hover{color:var(--accent)}
-
-        .lang-switch button {
-            background: none;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            font-weight: 500;
+        * {
+            margin: 0;
             padding: 0;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            box-sizing: border-box;
         }
-        .lang-switch button:hover { color: var(--accent); }
-        .lang-switch .active { text-decoration: underline; color: var(--accent); }
 
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: Inter, system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        section { padding: 80px 0; }
+
+        h1, h2, h3 { line-height: 1.2; }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #000;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        nav a:hover { color: var(--primary); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 260px;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: var(--muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ── RUNDES PROFILBILD ── */
+        .profile-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 4px solid white;
+            box-shadow: 0 8px 32px rgba(37,99,235,.18), 0 2px 8px rgba(0,0,0,.10);
+            display: block;
+            flex-shrink: 0;
+        }
+
+        /* ── ABOUT ── */
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* ── SKILLS ── */
+        .skill-category { margin-bottom: 2.5rem; }
+
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem 1.1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,.05);
+            border: 1px solid var(--border);
+            transition: .3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .75rem;
+        }
+
+        .skill-item:hover { transform: translateY(-3px); }
+
+        .skill-name {
+            font-size: .95rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .skill-years {
+            display: inline-flex;
+            align-items: center;
+            gap: .3rem;
+            background: #eff6ff;
+            color: var(--primary);
+            font-size: .78rem;
+            font-weight: 600;
+            padding: .25rem .6rem;
+            border-radius: 999px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .skill-years i {
+            font-size: .75rem;
+        }
+
+        /* ── PROJECTS ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: .3s;
+        }
+
+        .project-card:hover { transform: translateY(-6px); }
+
+        .project-thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: var(--border);
+            flex-shrink: 0;
+        }
+
+        .project-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform .4s ease;
+        }
+
+        .project-card:hover .project-thumbnail img {
+            transform: scale(1.04);
+        }
+
+        .project-content { padding: 1.5rem; }
+
+        .project-tags {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #eff6ff;
+            color: var(--primary);
+            padding: .35rem .7rem;
+            border-radius: 999px;
+            font-size: .85rem;
+        }
+
+        /* ── CONTACT ── */
+        .contact { text-align: center; }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .socials a {
+            font-size: 2rem;
+            color: var(--text);
+            transition: .3s;
+        }
+
+        .socials a:hover { color: var(--primary); }
+
+        /* ── PROJECT MODAL ── */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .modal.show { display: flex; }
+
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            color: var(--muted);
+            transition: color .2s;
+        }
+
+        .close-modal:hover { color: var(--text); }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* ── GALLERY – gleichgroße Kacheln ── */
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .modal-gallery .thumb {
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--border);
+            cursor: zoom-in;
+            position: relative;
+        }
+
+        .modal-gallery .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform .3s, opacity .3s;
+        }
+
+        .modal-gallery .thumb:hover img {
+            transform: scale(1.05);
+            opacity: .88;
+        }
+
+        /* Zoom-Icon-Overlay on hover */
+        .modal-gallery .thumb::after {
+            content: "\f00e";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            inset: 0;
+            /*Hier flex für lupensymbol*/
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            background: rgba(0,0,0,0);
+            transition: background .25s;
+            pointer-events: none;
+        }
+
+        .modal-gallery .thumb:hover::after {
+            background: rgba(0,0,0,.3);
+        }
+
+        /* ── LIGHTBOX ── */
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 16px;
+        }
+
+        #lightbox.show { display: flex; }
+
+        #lightbox-img {
+            max-width: min(92vw, 1200px);
+            max-height: 88vh;
+            border-radius: 10px;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0,0,0,.6);
+            user-select: none;
+            display: block;
+        }
+
+        .lb-close {
+            position: fixed;
+            top: 18px;
+            right: 24px;
+            font-size: 2.4rem;
+            color: rgba(255,255,255,.85);
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10001;
+            transition: color .2s;
+        }
+
+        .lb-close:hover { color: #fff; }
+
+        .lb-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,.12);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10001;
+            transition: background .2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .lb-nav:hover { background: rgba(255,255,255,.25); }
+
+        #lb-prev { left: 16px; }
+        #lb-next { right: 16px; }
+
+        .lb-nav.hidden { display: none; }
+
+        .lb-counter {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,.7);
+            font-size: .9rem;
+            font-family: Inter, system-ui, sans-serif;
+            z-index: 10001;
+            letter-spacing: .05em;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-wrapper { order: -1; }
+            .hero-buttons { justify-content: center; }
+            nav { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+
+            #lb-prev { left: 8px; }
+            #lb-next { right: 8px; }
+            .modal-gallery { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <base href="/portfolio-site/">
 </head>
 <body>
 
 <header>
-    <div class="container">
+    <div class="container navbar">
         <div class="logo">Tobias Schlicksupp</div>
-        <nav id="main-nav">
+        <nav>
             <ul>
-                <li><a href="about/index.html">Über mich</a></li>
-<!--                <li><a href="projects/index.html">Projekte</a></li>-->
+                <li><a href="#about">Über mich</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projekte</a></li>
+                <li><a href="#contact">Kontakt</a></li>
             </ul>
         </nav>
-        <div class="lang-switch">
-            <button id="lang-de" class="active">DE</button> |
-            <button id="lang-en">EN</button>
-        </div>
     </div>
 </header>
 
-<main class="hero">
-    <div class="hero-content container">
-        <h1>Junior Full Stack Web Developer</h1>
-        <p>Ich entwickle moderne Webanwendungen mit PHP, JavaScript & DevOps-Fokus.</p>
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <h1>Full Stack Web Developer (PHP / JavaScript)</h1>
+            <p>
+                Ich entwickle moderne Webanwendungen mit Fokus auf PHP (Laravel), REST APIs,
+                Datenbanken und DevOps-Prozesse wie Docker und CI/CD Pipelines.
+                Besonderen Wert lege ich auf sauberen Code, Testbarkeit und automatisierte Deployments.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">Projekte ansehen</a>
+                <a href="#contact" class="btn btn-outline">Kontakt</a>
+            </div>
+        </div>
+        <div class="profile-wrapper">
+            <img
+                    src="images/profile.jpg"
+                    alt="Tobias Schlicksupp"
+                    class="profile-image">
+        </div>
     </div>
-    <div class="hero-image">
-        <img src="images/1631716275890.jpg" alt="Porträt von Dir" />
-    </div>
-</main>
-
-<section class="separator-wrapper">
-    <hr class="separator" />
 </section>
 
-<section class="skills" aria-labelledby="skills-heading">
+<section id="about">
     <div class="container">
-        <h2 id="skills-heading">Kurzübersicht über meine Fähigkeiten</h2>
-        <p class="lead">Prozentwerte geben meine relative Erfahrung / Vertrautheit mit der Technologie an.</p>
+        <h2>Über mich</h2>
+        <div class="about-card">
+            <p>
+                Ich bin Full Stack Web Developer mit Schwerpunkt auf PHP, Datenbanken
+                und DevOps-gestützten Entwicklungsprozessen. <br><br>
 
-        <div class="skills-grid">
-            <div class="skill" data-percent="95">
-                <div class="label"><span>HTML</span><span class="percent">95%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+                Nach meiner Umschulung habe ich zusätzlich als Teamlead im Support gearbeitet
+                und dort 3rd-Level- sowie komplexe technische Tickets betreut. Parallel dazu habe ich
+                weiterhin Full Stack Anwendungen entwickelt und produktive Systeme unterstützt.<br><br>
+
+                Zu meinen technischen Schwerpunkten gehören die Entwicklung von Webanwendungen,
+                die Arbeit mit MariaDB, der Aufbau von Webcrawlern sowie die
+                Entwicklung und Integration von KI-gestützten Automatisierungen in bestehende Prozesse.<br><br>
+
+                Ich lege großen Wert auf sauberen, wartbaren Code, Testing und nachhaltige Softwarearchitektur.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <div class="container">
+        <h2>Skills</h2>
+
+        <div class="skill-category">
+            <h3>Frontend</h3>
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <span class="skill-name">HTML</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 4 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">CSS</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 4 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">JavaScript</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 3 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Vue</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 6 Monate</span>
+                </div>
             </div>
-            <div class="skill" data-percent="85">
-                <div class="label"><span>PHP</span><span class="percent">85%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Backend</h3>
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <span class="skill-name">PHP</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 4 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Laravel</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 7 Monate</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">REST APIs</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 3 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Composer</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 2 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">JWT</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 1 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">C# / .NET</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 7 Monate</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">C++</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 3 Monate</span>
+                </div>
             </div>
-            <div class="skill" data-percent="70">
-                <div class="label"><span>CSS</span><span class="percent">70%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Datenbanken</h3>
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <span class="skill-name">MariaDB</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 4 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">MySQL</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 1 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">MS SQL Server</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 2 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Redis</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 4 Monate</span>
+                </div>
             </div>
-            <div class="skill" data-percent="65">
-                <div class="label"><span>JavaScript</span><span class="percent">65%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+        </div>
+
+        <div class="skill-category">
+            <h3>DevOps &amp; Infrastruktur</h3>
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <span class="skill-name">Docker</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 4 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Git</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 5 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">GitLab CI/CD</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 4 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Nginx</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 2 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Linux (Ubuntu)</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 3 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Ubuntu Server</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 6 Monate</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Bash/Shell-Scripting</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 1 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Apache HTTP Server</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 6 Monate</span>
+                </div>
             </div>
-            <div class="skill" data-percent="65">
-                <div class="label"><span>Gitlab-CI/CD</span><span class="percent">65%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Qualitätssicherung</h3>
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <span class="skill-name">PHPUnit</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 4 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Psalm</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 2 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Infection</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 1 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">PHP-CS-Fixer</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 2 Jahre</span>
+                </div>
             </div>
-            <div class="skill" data-percent="60">
-                <div class="label"><span>Docker</span><span class="percent">60%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
-            </div>
-            <div class="skill" data-percent="55">
-                <div class="label"><span>Windows 11</span><span class="percent">50%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
-            </div>
-            <div class="skill" data-percent="50">
-                <div class="label"><span>Linux</span><span class="percent">50%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
-            </div>
-            <div class="skill" data-percent="50">
-                <div class="label"><span>Nginx</span><span class="percent">50%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
-            </div>
-            <div class="skill" data-percent="50">
-                <div class="label"><span>MySQL (MariaDB)</span><span class="percent">50%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
-            </div>
-            <div class="skill" data-percent="45">
-                <div class="label"><span>MSSQL (SQL Server)</span><span class="percent">45%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
-            </div>
-            <div class="skill" data-percent="40">
-                <div class="label"><span>C# / .net Core</span><span class="percent">40%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
-            </div>
-            <div class="skill" data-percent="25">
-                <div class="label"><span>C++</span><span class="percent">25%</span></div>
-                <div class="bar"><div class="fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Test Automation / E2E</h3>
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <span class="skill-name">Puppeteer</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 2 Jahre</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Playwright</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 1 Jahre</span>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<footer>
-    <div class="container footer-content">
-        <p>Folge mir:</p>
-        <div class="social-links">
-            <a href="https://github.com/SchlicksuppTobias" target="_blank" rel="noopener" aria-label="GitHub">
-                <i class="fab fa-github fa-2x"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/tobias-schlicksupp-545700220/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <i class="fab fa-linkedin fa-2x"></i>
-            </a>
-<!--            <a href="https://youtube.com/deinchannel" target="_blank" rel="noopener" aria-label="YouTube">-->
-<!--                <i class="fab fa-youtube fa-2x"></i>-->
-<!--            </a>-->
+<section id="projects">
+    <div class="container">
+        <h2>Projekte</h2>
+        <div class="projects-grid">
+
+            <div class="project-card" data-project="project1">
+                <div class="project-thumbnail">
+                    <img src="data/project1/screenshots/thumbnail.jpg" alt="">
+                </div>
+                <div class="project-content">
+                    <h3>Bewerbungsmanager</h3>
+                    <p>Bewerbungsmanager ist eine schlanke Web-Anwendung zur strukturierten Verwaltung und Nachverfolgung von Bewerbungen.
+                        Er ermöglicht das Erfassen von Bewerbungsstatus, Unternehmen und Fortschritt in einer übersichtlichen Oberfläche und hilft dabei, den gesamten Bewerbungsprozess effizient zu organisieren.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Database</span>
+                        <span class="tag">Webserver</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-project="project2">
+                <div class="project-thumbnail">
+                    <img src="data/project2/thumbnail.jpg" alt="">
+                </div>
+                <div class="project-content">
+                    <h3>Life Dashboard</h3>
+                    <p>Fullstack entwickeltes Life-Tracking-Dashboard zur Verwaltung von Jahreszielen, Habit-Tracking und persönlichen KPIs. Die Anwendung kombiniert UI-Interaktionen, lokale Datenpersistenz und modulare Komponentenarchitektur.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Local Storage</span>
+                        <span class="tag">UI/UX Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-project="project3">
+                <div class="project-thumbnail">
+                    <img src="data/project3/thumbnail.jpg" alt="">
+                </div>
+                <div class="project-content">
+                    <h3>House Planner</h3>
+                    <p>Der House Planner ist eine interaktive Webanwendung zur digitalen Verwaltung und Visualisierung eines Hauses. Nutzer können Gebäude konfigurieren, Etagen und Räume anlegen, Grundrisse bearbeiten und Aufgaben pro Raum verwalten. Alle Daten werden lokal im Browser gespeichert.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Local Storage</span>
+                        <span class="tag">UI/UX Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-project="project4">
+                <div class="project-thumbnail">
+                    <img src="data/project4/thumbnail.jpg" alt="">
+                </div>
+                <div class="project-content">
+                    <h3>Rechnungsgenerator</h3>
+                    <p>Moderne Webanwendung zur Erstellung und Verwaltung von Rechnungen mit Kundenmanagement, dynamischer Positionserfassung und PDF-Export direkt im Browser.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Local Storage</span>
+                        <span class="tag">UI/UX Design</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-</footer>
+</section>
+
+<section id="contact">
+    <div class="container contact">
+        <h2>Kontakt</h2>
+        <p>Interesse an einer Zusammenarbeit?</p>
+        <div class="socials">
+            <a href="https://github.com/SchlicksuppTobias" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/tobias-schlicksupp-545700220/" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ── PROJECT MODAL ── -->
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <div id="modalTags" class="project-tags" style="margin-top:20px"></div>
+        <div id="modalGallery" class="modal-gallery"></div>
+        <p style="margin-top:20px;">
+            <a id="modalGithub" class="btn btn-primary" target="_blank">GitHub Repository</a>
+        </p>
+    </div>
+</div>
+
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox">
+    <span class="lb-close" id="lb-close" title="Schließen">&times;</span>
+    <button class="lb-nav" id="lb-prev" aria-label="Vorheriges Bild">&#8592;</button>
+    <img id="lightbox-img" src="" alt="Screenshot">
+    <button class="lb-nav" id="lb-next" aria-label="Nächstes Bild">&#8594;</button>
+    <div class="lb-counter" id="lb-counter"></div>
+</div>
 
 <script>
-    (function(){
-        const skillsSection = document.querySelector('.skills');
-        if(!skillsSection) return;
-        const observer = new IntersectionObserver((entries, obs)=>{
-            entries.forEach(entry=>{
-                if(!entry.isIntersecting) return;
-                document.querySelectorAll('.skill').forEach(skill => {
-                    const percent = parseInt(skill.getAttribute('data-percent')) || 0;
-                    const fill = skill.querySelector('.fill');
-                    const percentLabel = skill.querySelector('.percent');
-                    if(!fill) return;
-                    fill.style.width = percent + '%';
-                    fill.setAttribute('aria-valuenow', String(percent));
-                    let start = 0;
-                    const duration = 900;
-                    const stepTime = Math.max(Math.floor(duration / (percent || 1)), 10);
-                    const counter = setInterval(()=>{
-                        start += 1;
-                        percentLabel.textContent = start + '%';
-                        if(start >= percent) clearInterval(counter);
-                    }, stepTime);
+    /* ── PROJECT MODAL ── */
+    const modal        = document.getElementById("projectModal");
+    const modalContent = modal.querySelector(".modal-content");
+
+    let lightboxImages = [];  // alle Bild-URLs der aktuell geöffneten Gallery
+    let lightboxIndex  = 0;   // aktuell angezeigtes Bild
+
+    document.querySelectorAll(".project-card").forEach(card => {
+        card.addEventListener("click", async () => {
+            const project = card.dataset.project;
+            try {
+                const response = await fetch(`data/${project}/project.json`);
+                const data = await response.json();
+
+                document.getElementById("modalTitle").textContent       = data.title;
+                document.getElementById("modalDescription").textContent = data.longDescription;
+                document.getElementById("modalGithub").href             = data.github;
+
+                const tags = document.getElementById("modalTags");
+                tags.innerHTML = "";
+                data.technologies.forEach(tech => {
+                    tags.innerHTML += `<span class="tag">${tech}</span>`;
                 });
-                obs.disconnect();
-            });
-        }, {threshold:0.15});
-        observer.observe(skillsSection);
-    })();
 
-    const translations = {
-        de: {
-            title: "Junior Full Stack Web Developer",
-            subtitle: "Ich entwickle moderne Webanwendungen mit PHP, JavaScript & DevOps-Fokus.",
-            skillsHeading: "Kurzübersicht über meine Fähigkeiten",
-            skillsLead: "Prozentwerte geben meine relative Erfahrung / Vertrautheit mit der Technologie an.",
-            follow: "Folge mir:",
-            navAbout: "Über mich",
-            navProjects: "Projekte"
-        },
-        en: {
-            title: "Junior Full Stack Web Developer",
-            subtitle: "I develop modern web applications with PHP, JavaScript & DevOps focus.",
-            skillsHeading: "Overview of my skills",
-            skillsLead: "Percentages indicate my relative experience or familiarity with each technology.",
-            follow: "Follow me:",
-            navAbout: "About Me",
-            navProjects: "Projects"
-        }
-    };
+                const gallery = document.getElementById("modalGallery");
+                gallery.innerHTML = "";
+                lightboxImages = [];
 
-    (function() {
-        const userLang = localStorage.getItem("lang") || "de";
-        setLanguage(userLang);
+                data.screenshots.forEach((image, index) => {
+                    const src = `data/${project}/${image}`;
+                    lightboxImages.push(src);
 
-        document.getElementById("lang-de").addEventListener("click", () => switchLanguage("de"));
-        document.getElementById("lang-en").addEventListener("click", () => switchLanguage("en"));
+                    // Kachel-Wrapper für gleichmäßige Größe
+                    const thumb = document.createElement("div");
+                    thumb.className = "thumb";
+                    thumb.title = "Klicken zum Vergrößern";
 
-        function switchLanguage(lang) {
-            localStorage.setItem("lang", lang);
-            setLanguage(lang);
-        }
+                    const img = document.createElement("img");
+                    img.src     = src;
+                    img.alt     = `Screenshot ${index + 1}`;
+                    img.loading = "lazy";
 
-        function setLanguage(lang) {
-            const t = translations[lang];
+                    thumb.appendChild(img);
 
-            document.querySelector("h1").textContent = t.title;
-            document.querySelector(".hero-content p").textContent = t.subtitle;
-            document.getElementById("skills-heading").textContent = t.skillsHeading;
-            document.querySelector(".skills .lead").textContent = t.skillsLead;
-            document.querySelector("footer p").textContent = t.follow;
+                    thumb.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        openLightbox(index);
+                    });
 
-            // 🆕 Navigation anpassen:
-            const navLink = document.querySelector("#main-nav a");
-            if (navLink) {
-                navLink.textContent = t.navAbout;
+                    gallery.appendChild(thumb);
+                });
+
+                modal.classList.add("show");
+            } catch (error) {
+                console.error(error);
+                alert("Projektdaten konnten nicht geladen werden.");
             }
+        });
+    });
 
-            // const navLinks = document.querySelectorAll("#main-nav a");
-            // if (navLinks.length >= 2) {
-            //     navLinks[0].textContent = t.navAbout;
-            //     //navLinks[1].textContent = t.navProjects;
-            // }
+    document.querySelector(".close-modal").addEventListener("click", closeModal);
+    modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
 
-            document.getElementById("lang-de").classList.toggle("active", lang === "de");
-            document.getElementById("lang-en").classList.toggle("active", lang === "en");
+    function closeModal() {
+        modal.classList.remove("show");
+    }
+
+    /* ── LIGHTBOX ── */
+    const lightbox    = document.getElementById("lightbox");
+    const lbImg       = document.getElementById("lightbox-img");
+    const lbPrev      = document.getElementById("lb-prev");
+    const lbNext      = document.getElementById("lb-next");
+    const lbClose     = document.getElementById("lb-close");
+    const lbCounter   = document.getElementById("lb-counter");
+
+    function openLightbox(index) {
+        lightboxIndex = index;
+        updateLightbox();
+        lightbox.classList.add("show");
+    }
+
+    function updateLightbox() {
+        lbImg.src         = lightboxImages[lightboxIndex];
+        lbCounter.textContent = `${lightboxIndex + 1} / ${lightboxImages.length}`;
+        lbPrev.classList.toggle("hidden", lightboxImages.length <= 1);
+        lbNext.classList.toggle("hidden", lightboxImages.length <= 1);
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove("show");
+    }
+
+    lbClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", e => {
+        // Klick auf Hintergrund schließt die Lightbox
+        if (e.target === lightbox || e.target === lbImg) closeLightbox();
+    });
+
+    lbPrev.addEventListener("click", (e) => {
+        e.stopPropagation();
+        lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+        updateLightbox();
+    });
+
+    lbNext.addEventListener("click", (e) => {
+        e.stopPropagation();
+        lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+        updateLightbox();
+    });
+
+    /* ── KEYBOARD NAVIGATION ── */
+    document.addEventListener("keydown", e => {
+        if (lightbox.classList.contains("show")) {
+            if (e.key === "Escape")      closeLightbox();
+            if (e.key === "ArrowLeft")   { lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length; updateLightbox(); }
+            if (e.key === "ArrowRight")  { lightboxIndex = (lightboxIndex + 1) % lightboxImages.length; updateLightbox(); }
+        } else if (modal.classList.contains("show")) {
+            if (e.key === "Escape") closeModal();
         }
-    })();
+    });
 </script>
+
 </body>
 </html>

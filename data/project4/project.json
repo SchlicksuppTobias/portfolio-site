@@ -1,0 +1,20 @@
+{
+  "title": "Rechnungsgenerator",
+  "longDescription": "Der Rechnungsgenerator ist eine moderne, vollständig clientseitige Webanwendung zur Erstellung, Verwaltung und Ausgabe von Rechnungen. Die Anwendung ermöglicht es, Rechnungen strukturiert zu erstellen, Kunden zu verwalten und Positionen dynamisch zu erfassen – komplett ohne Backend oder Datenbank.\n\nIm Mittelpunkt steht ein intuitiver Rechnungseditor, der eine Echtzeit-Vorschau der fertigen Rechnung bietet. Nutzer können Rechnungsnummern, Zahlungsziele, Mehrwertsteuer-Sätze sowie individuelle Positionen mit Beschreibung, Menge und Preis flexibel anpassen. Die Gesamtsummen werden dabei automatisch berechnet und live aktualisiert.\n\nEin integriertes Kundenmanagement erlaubt das Speichern und Auswählen von Geschäftskunden inklusive Kontaktdaten und optionaler Umsatzsteuer-ID. Rechnungen können direkt einem Kunden zugeordnet werden.\n\nAlle Daten werden lokal im Browser gespeichert (LocalStorage), wodurch die Anwendung vollständig offlinefähig und datenschutzfreundlich ist. Zusätzlich bietet die Anwendung eine Rechnungs-Historie, über die bereits erstellte Rechnungen jederzeit wieder geöffnet, bearbeitet oder gelöscht werden können.\n\nEin weiteres Highlight ist der integrierte Druck- und PDF-Export, der eine sauber formatierte Rechnung erzeugt, die direkt für geschäftliche Zwecke genutzt werden kann.",
+  "github": "https://github.com/SchlicksuppTobias/rechnungsgenerator",
+  "repositoryType": "open-source",
+  "technologies": [
+    "HTML5",
+    "CSS3",
+    "JavaScript (Vanilla)",
+    "SVG Graphics",
+    "LocalStorage API",
+    "Responsive UI Design"
+  ],
+  "screenshots": [
+    "screenshots/newBill.jpg",
+    "screenshots/newCustomer.jpg",
+    "screenshots/own.jpg",
+    "screenshots/position.jpg"
+  ]
+}

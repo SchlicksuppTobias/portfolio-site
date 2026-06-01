@@ -1,0 +1,23 @@
+{
+  "title": "House Planner",
+  "shortDescription": "Moderne Webanwendung zur digitalen Planung und Visualisierung von Wohngebäuden mit interaktiven Grundrissen und Aufgabenverwaltung.",
+  "longDescription": "Der House Planner ist eine moderne Webanwendung zur digitalen Planung, Organisation und Visualisierung von Wohngebäuden. Die Anwendung ermöglicht es, ein komplettes Haus strukturiert abzubilden – von der Gebäudekonfiguration über einzelne Etagen bis hin zu detaillierten Raum- und Aufgabenverwaltungen.\n\nIm Setup-Bereich kann zunächst die Grundstruktur des Hauses definiert werden. Anschließend werden die einzelnen Etagen automatisch erzeugt und können individuell benannt und angepasst werden.\n\nJede Etage enthält eine dynamische Raumverwaltung. Räume können hinzugefügt, umbenannt, gelöscht und mit Größenangaben versehen werden. Zusätzlich verfügt jeder Raum über eine integrierte Aufgabenverwaltung, mit der To-Dos direkt einem Raum zugeordnet werden können – ideal für Renovierungen, Haushaltsplanung oder Projektorganisation.\n\nEin besonderes Highlight ist die interaktive Grundriss-Ansicht. Räume werden als verschiebbare und verformbare Polygone dargestellt, die per Drag & Drop im SVG-Canvas bearbeitet werden können. Dadurch lassen sich individuelle Raumlayouts flexibel gestalten, inklusive freier Formen wie L-, T- oder Rechteckstrukturen.\n\nAlle Daten werden vollständig lokal im Browser gespeichert (LocalStorage), wodurch keine externe Datenbank erforderlich ist. Die Anwendung ist dadurch schnell, offlinefähig und datenschutzfreundlich.",
+  "github": "https://github.com/SchlicksuppTobias/rechnungsgenerator",
+  "repositoryType": "open-source",
+  "technologies": [
+    "HTML5",
+    "CSS3",
+    "JavaScript (Vanilla)",
+    "SVG Graphics",
+    "LocalStorage API",
+    "Responsive UI Design"
+  ],
+  "screenshots": [
+    "screenshots/house.jpg",
+    "screenshots/layout.jpg",
+    "screenshots/overview.jpg",
+    "screenshots/ground.jpg",
+    "screenshots/aufgabe.jpg",
+    "screenshots/addRoom.jpg"
+  ]
+}

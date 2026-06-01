@@ -1,0 +1,23 @@
+{
+  "title": "Bewerbungsmanager",
+  "longDescription": "Der Bewerbungsmanager ist eine webbasierte Anwendung zur zentralen Organisation des gesamten Bewerbungsprozesses.\n\nZiel des Projekts ist es, Bewerbungen nicht mehr über Excel-Tabellen oder verstreute Notizen zu verwalten, sondern in einem klar strukturierten System mit intuitiver Benutzeroberfläche abzubilden.\n\nDie Anwendung ermöglicht das Erfassen, Verwalten und Nachverfolgen einzelner Bewerbungen inklusive Status, Unternehmen, Zeitpunkten und individuellen Notizen. Dadurch entsteht ein transparenter Überblick über den aktuellen Stand aller Bewerbungsaktivitäten.\n\nIm Fokus der Entwicklung standen eine einfache Bedienbarkeit, schnelle Erfassung neuer Einträge sowie eine klare visuelle Struktur zur Unterstützung im Bewerbungsalltag.\n\nDas Projekt wurde als praxisnahes Full-Stack-ähnliches Übungsprojekt umgesetzt und orientiert sich an realen Applicant-Tracking-Systemen (ATS), wie sie auch in professionellen Recruiting-Umgebungen eingesetzt werden.",
+  "github": "https://github.com/SchlicksuppTobias/Bewerbungsmanager",
+  "technologies": [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "PHP 8.3",
+    "MariaDB",
+    "Docker",
+    "Docker Compose",
+    "Nginx",
+    "PDO"
+
+  ],
+  "screenshots": [
+    "screenshots/neueBewerbung.jpg",
+    "screenshots/status.jpg",
+    "screenshots/ansprechpartner.jpg",
+    "screenshots/overview.jpg"
+  ]
+}
