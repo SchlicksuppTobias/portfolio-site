@@ -236,12 +236,11 @@
 
         .project-card:hover { transform: translateY(-6px); }
 
-        /* ── THUMBNAIL: feste Höhe, aspect-ratio als Fallback, immer gut skaliert ── */
         .project-thumbnail {
             width: 100%;
             aspect-ratio: 16 / 9;
             overflow: hidden;
-            background: var(--border); /* Platzhalterfarbe wenn kein Bild */
+            background: var(--border);
             flex-shrink: 0;
         }
 
@@ -293,7 +292,7 @@
 
         .socials a:hover { color: var(--primary); }
 
-        /* ── MODAL ── */
+        /* ── PROJECT MODAL ── */
         .modal {
             position: fixed;
             inset: 0;
@@ -324,7 +323,12 @@
             top: 15px;
             font-size: 2rem;
             cursor: pointer;
+            line-height: 1;
+            color: var(--muted);
+            transition: color .2s;
         }
+
+        .close-modal:hover { color: var(--text); }
 
         .modal-gallery {
             display: grid;
@@ -333,9 +337,95 @@
             margin-top: 1rem;
         }
 
+        /* ── GALLERY IMAGES: clickable ── */
         .modal-gallery img {
             width: 100%;
             border-radius: 12px;
+            cursor: zoom-in;
+            transition: transform .25s, box-shadow .25s;
+            display: block;
+        }
+
+        .modal-gallery img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(0,0,0,.18);
+        }
+
+        /* ── LIGHTBOX ── */
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 16px;
+        }
+
+        #lightbox.show { display: flex; }
+
+        #lightbox-img {
+            max-width: min(92vw, 1200px);
+            max-height: 88vh;
+            border-radius: 10px;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0,0,0,.6);
+            user-select: none;
+            display: block;
+        }
+
+        .lb-close {
+            position: fixed;
+            top: 18px;
+            right: 24px;
+            font-size: 2.4rem;
+            color: rgba(255,255,255,.85);
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10001;
+            transition: color .2s;
+        }
+
+        .lb-close:hover { color: #fff; }
+
+        .lb-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,.12);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10001;
+            transition: background .2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .lb-nav:hover { background: rgba(255,255,255,.25); }
+
+        #lb-prev { left: 16px; }
+        #lb-next { right: 16px; }
+
+        .lb-nav.hidden { display: none; }
+
+        .lb-counter {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,.7);
+            font-size: .9rem;
+            font-family: Inter, system-ui, sans-serif;
+            z-index: 10001;
+            letter-spacing: .05em;
         }
 
         /* ── RESPONSIVE ── */
@@ -345,15 +435,13 @@
                 text-align: center;
             }
 
-            .profile-wrapper {
-                order: -1;
-            }
-
+            .profile-wrapper { order: -1; }
             .hero-buttons { justify-content: center; }
-
             nav { display: none; }
-
             .hero h1 { font-size: 2.2rem; }
+
+            #lb-prev { left: 8px; }
+            #lb-next { right: 8px; }
         }
     </style>
 </head>
@@ -563,12 +651,13 @@
                 </div>
                 <div class="skill-item">
                     <span class="skill-name">Playwright</span>
-                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 1 Jahre</span>
+                    <span class="skill-years"><i class="fa-solid fa-clock"></i> 6 Monate</span>
                 </div>
             </div>
         </div>
+
         <div class="skill-category">
-            <h3>Test Automation / E2E </h3>
+            <h3>Test Automation / E2E</h3>
             <div class="skill-grid">
                 <div class="skill-item">
                     <span class="skill-name">Puppeteer</span>
@@ -593,11 +682,14 @@
                     <img src="data/project1/thumbnail.jpg" alt="">
                 </div>
                 <div class="project-content">
-                    <h3>Projekt 1</h3>
-                    <p>Kurzbeschreibung des Projekts.</p>
+                    <h3>Life Dashboard</h3>
+                    <p>Fullstack entwickeltes Life-Tracking-Dashboard zur Verwaltung von Jahreszielen, Habit-Tracking und persönlichen KPIs. Die Anwendung kombiniert UI-Interaktionen, lokale Datenpersistenz und modulare Komponentenarchitektur.</p>
                     <div class="project-tags">
-                        <span class="tag">PHP</span>
-                        <span class="tag">Docker</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Local Storage</span>
+                        <span class="tag">UI/UX Design</span>
                     </div>
                 </div>
             </div>
@@ -635,6 +727,7 @@
     </div>
 </section>
 
+<!-- ── PROJECT MODAL ── -->
 <div id="projectModal" class="modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
@@ -648,8 +741,22 @@
     </div>
 </div>
 
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox">
+    <span class="lb-close" id="lb-close" title="Schließen">&times;</span>
+    <button class="lb-nav" id="lb-prev" aria-label="Vorheriges Bild">&#8592;</button>
+    <img id="lightbox-img" src="" alt="Screenshot">
+    <button class="lb-nav" id="lb-next" aria-label="Nächstes Bild">&#8594;</button>
+    <div class="lb-counter" id="lb-counter"></div>
+</div>
+
 <script>
-    const modal = document.getElementById("projectModal");
+    /* ── PROJECT MODAL ── */
+    const modal        = document.getElementById("projectModal");
+    const modalContent = modal.querySelector(".modal-content");
+
+    let lightboxImages = [];  // alle Bild-URLs der aktuell geöffneten Gallery
+    let lightboxIndex  = 0;   // aktuell angezeigtes Bild
 
     document.querySelectorAll(".project-card").forEach(card => {
         card.addEventListener("click", async () => {
@@ -658,9 +765,9 @@
                 const response = await fetch(`data/${project}/project.json`);
                 const data = await response.json();
 
-                document.getElementById("modalTitle").textContent = data.title;
+                document.getElementById("modalTitle").textContent       = data.title;
                 document.getElementById("modalDescription").textContent = data.longDescription;
-                document.getElementById("modalGithub").href = data.github;
+                document.getElementById("modalGithub").href             = data.github;
 
                 const tags = document.getElementById("modalTags");
                 tags.innerHTML = "";
@@ -670,28 +777,93 @@
 
                 const gallery = document.getElementById("modalGallery");
                 gallery.innerHTML = "";
-                data.screenshots.forEach(image => {
-                    gallery.innerHTML += `<img src="data/${project}/${image}" alt="">`;
+                lightboxImages = [];
+
+                data.screenshots.forEach((image, index) => {
+                    const src = `data/${project}/${image}`;
+                    lightboxImages.push(src);
+
+                    const img = document.createElement("img");
+                    img.src   = src;
+                    img.alt   = `Screenshot ${index + 1}`;
+                    img.title = "Klicken zum Vergrößern";
+
+                    img.addEventListener("click", (e) => {
+                        e.stopPropagation();   // nicht den modal-close-click auslösen
+                        openLightbox(index);
+                    });
+
+                    gallery.appendChild(img);
                 });
 
                 modal.classList.add("show");
-            } catch(error) {
+            } catch (error) {
                 console.error(error);
                 alert("Projektdaten konnten nicht geladen werden.");
             }
         });
     });
 
-    document.querySelector(".close-modal").addEventListener("click", () => {
+    document.querySelector(".close-modal").addEventListener("click", closeModal);
+    modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+
+    function closeModal() {
         modal.classList.remove("show");
+    }
+
+    /* ── LIGHTBOX ── */
+    const lightbox    = document.getElementById("lightbox");
+    const lbImg       = document.getElementById("lightbox-img");
+    const lbPrev      = document.getElementById("lb-prev");
+    const lbNext      = document.getElementById("lb-next");
+    const lbClose     = document.getElementById("lb-close");
+    const lbCounter   = document.getElementById("lb-counter");
+
+    function openLightbox(index) {
+        lightboxIndex = index;
+        updateLightbox();
+        lightbox.classList.add("show");
+    }
+
+    function updateLightbox() {
+        lbImg.src         = lightboxImages[lightboxIndex];
+        lbCounter.textContent = `${lightboxIndex + 1} / ${lightboxImages.length}`;
+        lbPrev.classList.toggle("hidden", lightboxImages.length <= 1);
+        lbNext.classList.toggle("hidden", lightboxImages.length <= 1);
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove("show");
+    }
+
+    lbClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", e => {
+        // Klick auf Hintergrund schließt die Lightbox
+        if (e.target === lightbox || e.target === lbImg) closeLightbox();
     });
 
-    modal.addEventListener("click", e => {
-        if (e.target === modal) modal.classList.remove("show");
+    lbPrev.addEventListener("click", (e) => {
+        e.stopPropagation();
+        lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+        updateLightbox();
     });
 
+    lbNext.addEventListener("click", (e) => {
+        e.stopPropagation();
+        lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+        updateLightbox();
+    });
+
+    /* ── KEYBOARD NAVIGATION ── */
     document.addEventListener("keydown", e => {
-        if (e.key === "Escape") modal.classList.remove("show");
+        if (lightbox.classList.contains("show")) {
+            if (e.key === "Escape")      closeLightbox();
+            if (e.key === "ArrowLeft")   { lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length; updateLightbox(); }
+            if (e.key === "ArrowRight")  { lightboxIndex = (lightboxIndex + 1) % lightboxImages.length; updateLightbox(); }
+        } else if (modal.classList.contains("show")) {
+            if (e.key === "Escape") closeModal();
+        }
     });
 </script>
 
