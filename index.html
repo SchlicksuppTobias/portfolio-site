@@ -337,18 +337,57 @@
             margin-top: 1rem;
         }
 
-        /* ── GALLERY IMAGES: clickable ── */
-        .modal-gallery img {
-            width: 100%;
-            border-radius: 12px;
-            cursor: zoom-in;
-            transition: transform .25s, box-shadow .25s;
-            display: block;
+        /* ── GALLERY – gleichgroße Kacheln ── */
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
-        .modal-gallery img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 24px rgba(0,0,0,.18);
+        .modal-gallery .thumb {
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--border);
+            cursor: zoom-in;
+            position: relative;
+        }
+
+        .modal-gallery .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform .3s, opacity .3s;
+        }
+
+        .modal-gallery .thumb:hover img {
+            transform: scale(1.05);
+            opacity: .88;
+        }
+
+        /* Zoom-Icon-Overlay on hover */
+        .modal-gallery .thumb::after {
+            content: "\f00e";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            inset: 0;
+            /*Hier flex für lupensymbol*/
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            background: rgba(0,0,0,0);
+            transition: background .25s;
+            pointer-events: none;
+        }
+
+        .modal-gallery .thumb:hover::after {
+            background: rgba(0,0,0,.3);
         }
 
         /* ── LIGHTBOX ── */
@@ -442,6 +481,7 @@
 
             #lb-prev { left: 8px; }
             #lb-next { right: 8px; }
+            .modal-gallery { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
         }
     </style>
 </head>
@@ -783,17 +823,24 @@
                     const src = `data/${project}/${image}`;
                     lightboxImages.push(src);
 
-                    const img = document.createElement("img");
-                    img.src   = src;
-                    img.alt   = `Screenshot ${index + 1}`;
-                    img.title = "Klicken zum Vergrößern";
+                    // Kachel-Wrapper für gleichmäßige Größe
+                    const thumb = document.createElement("div");
+                    thumb.className = "thumb";
+                    thumb.title = "Klicken zum Vergrößern";
 
-                    img.addEventListener("click", (e) => {
-                        e.stopPropagation();   // nicht den modal-close-click auslösen
+                    const img = document.createElement("img");
+                    img.src     = src;
+                    img.alt     = `Screenshot ${index + 1}`;
+                    img.loading = "lazy";
+
+                    thumb.appendChild(img);
+
+                    thumb.addEventListener("click", (e) => {
+                        e.stopPropagation();
                         openLightbox(index);
                     });
 
-                    gallery.appendChild(img);
+                    gallery.appendChild(thumb);
                 });
 
                 modal.classList.add("show");
