@@ -3,8 +3,8 @@
   "longDescription": "Eigenentwickeltes persönliches Life-Management-Dashboard zur Strukturierung von Zielen, Gewohnheiten und Leistungskennzahlen. Die Anwendung kombiniert ein interaktives UI für Zielplanung, Habit-Tracking und KPI-Visualisierung und dient als digitales System zur persönlichen Selbstorganisation und Produktivitätssteuerung.",
   "github": "https://github.com/SchlicksuppTobias/lifeDashboard",
   "technologies": [
-    "HTML",
-    "CSS",
+    "HTML5",
+    "CSS3",
     "JavaScript",
     "Local Storage",
     "UI/UX Design"
